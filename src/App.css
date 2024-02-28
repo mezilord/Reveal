@@ -1,0 +1,404 @@
+* {
+  margin: 0%;
+  padding: 0%;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+@font-face {
+  font-family: 'SF-Pro-Display-Black';
+  src: url('../src/Fonts/English/San-Francisco-Pro-Fonts-master/SF-Pro-Display-Black.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'SF-Pro-Display-Heavy';
+  src: url('../src/Fonts/English/San-Francisco-Pro-Fonts-master/SF-Pro-Display-Heavy.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF-Pro-Display-Regular';
+  src: url('../src/Fonts/English/San-Francisco-Pro-Fonts-master/SF-Pro-Display-Regular.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF-Pro-Display-Medium';
+  src: url('../src/Fonts/English/San-Francisco-Pro-Fonts-master/SF-Pro-Display-Medium.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.navbar {
+  font-family: 'SF-Pro-Display-Regular';
+  font-weight: lighter;
+  font-style: normal;
+  position: relative;
+  padding: 10px;
+  background-color: #ffffff;
+  color: #ab9700;
+  height: 40px;
+}
+
+.navbar-logo img {
+  position: absolute;
+  top: 10px;
+  left: 10%;
+  height: 42px;
+}
+
+.navbar-links {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.navbar-links a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #958400;
+}
+
+.Home {
+  width: 100%;
+  height: 100vh;
+  background-image: url('../src/assets/images/homeBg.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(1);
+}
+
+.HomeText {
+  font-family: 'SF-Pro-Display-Regular';
+  font-weight: lighter;
+  font-style: normal;
+  position: absolute;
+  width: 40%;
+  height: 50%;
+  bottom: 4%;
+  left: 3%;
+}
+
+.buttonh {
+  font-family: 'SF-Pro-Display-Regular';
+  font-weight: lighter;
+  font-style: normal;
+  background-color: #bd9321;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#HomeTextH1 {
+  font-family: 'SF-Pro-Display-Heavy';
+  font-weight: lighter;
+  font-style: normal;
+  color: #bd9321;
+  font-size: 2em;
+  margin: 0;
+}
+
+.hero {
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.Disp {
+  color: rgb(1, 0, 0);
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.button {
+  background-color: #bd9321;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.Discover {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  width: 100%;
+  height: 80vh;
+}
+
+.First {
+  font-family: 'SF-Pro-Display-Black';
+  font-weight: lighter;
+  font-style: normal;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.FirstContent {
+  font-family: 'SF-Pro-Display-Regular';
+  font-weight: lighter;
+  font-style: normal;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+.Second {
+  background-image: url('../src/assets/images/Facepic.jpg');
+  background-size: cover;
+  background-position: center;
+  width: 50%;
+}
+
+.Gallery {
+  padding-top: 20px;
+  font-family: 'SF-Pro-Display-Medium';
+  font-weight: lighter;
+  font-style: normal;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+}
+
+.video-container {
+  margin-top: 30px;
+  width: 80%;
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.image-slider {
+  overflow: hidden;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.image-slider div {
+  display: flex; /* Use flexbox to make images appear in a single line */
+  animation: slide 50s linear infinite;
+  animation-delay: -15s;
+}
+
+.image-slider img {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  margin-right: 20px;
+  box-sizing: border-box;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+@media (max-width: 800px) {
+  .HomeText {
+    width: 90%;
+    left: 5%;
+  }
+}
+
+.curved-iframe {
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.Consultation {
+  font-family: 'SF-Pro-Display-Regular';
+  font-weight: lighter;
+  font-style: normal;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 80vh;
+}
+
+.team-section {
+  font-family: 'SF-Pro-Display-Regular';
+  font-weight: lighter;
+  font-style: normal;
+  text-align: center;
+}
+
+.section-heading {
+  margin-bottom: 20px;
+}
+
+.team-cards-container {
+  display: flex;
+  justify-content: center;
+}
+
+.team-member-card {
+  width: 250px;
+  padding: 20px;
+  margin: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.team-member-image {
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 10px;
+}
+
+.team-member-details {
+  flex-grow: 1;
+}
+
+.team-member-card h3 {
+  margin: 0;
+}
+
+.team-member-card p {
+  margin: 5px 0;
+}
+
+.team-member-card button {
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  margin-top: 15px;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.service-grid {
+  font-family: 'SF-Pro-Display-Regular';
+  font-weight: lighter;
+  font-style: normal;
+  margin: 5%;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  justify-content: left;
+}
+.service {
+  background-color: #fffefe;
+  padding-top: 20px;
+  margin-top: 20px;
+}
+.service-card h3 {
+  font-size: 14px;
+  margin-top: 5px;
+}
+.service-card {
+  border: 1px solid #fefefe;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: left;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adjust the shadow color and size as needed */
+}
+
+.buttonser {
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border: none;
+
+  margin-top: 10px;
+  cursor: pointer;
+  font-family: 'SF-Pro-Display-Medium';
+  font-weight: lighter;
+  font-style: normal;
+}
+
+.S {
+  font-family: 'SF-Pro-Display-Heavy';
+  font-weight: lighter;
+  font-style: normal;
+  text-align: center;
+}
+
+.P {
+  margin: 20px 0;
+}
+
+.popup {
+  font-family: 'SF-Pro-Display-Regular';
+  font-weight: lighter;
+  font-style: normal;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #333;
+}
+
+.footer {
+  font-family: 'SF-Pro-Display-Regular';
+  font-weight: lighter;
+  font-style: normal;
+}
+
+@media (max-width: 1000px) {
+  .HomeText {
+    width: 90%;
+    left: 5%;
+    color: blue;
+  }
+
+  .Discover {
+    flex-direction: column-reverse;
+  }
+}
