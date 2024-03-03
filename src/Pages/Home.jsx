@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 import '../App.css'
 
-const Home = () => {
+const Home = ({ section }) => {
   const services = [
     {
       name: 'Microneedling',
@@ -59,7 +59,13 @@ const Home = () => {
     }
   ]
 
-  const TeamMemberCard = ({ imageSrc, name, profession, about }) => (
+  const TeamMemberCard = ({
+    imageSrc,
+    name,
+    profession,
+    about,
+    onReadMoreClick
+  }) => (
     <div className="team-member-card" width="250px" height="350px">
       <img
         src={imageSrc}
@@ -72,9 +78,35 @@ const Home = () => {
       <h3>{name}</h3>
       <p>{profession}</p>
       <p>{about}</p>
-      <button>Read More</button>
+      <button
+        onClick={() => onReadMoreClick({ name, profession, about, imageSrc })}
+      >
+        Read More
+      </button>
     </div>
   )
+
+  const [teamPopupContent, setTeamPopupContent] = useState(null)
+
+  const handleTeamMemberReadMoreClick = ({
+    name,
+    profession,
+    about,
+    imageSrc
+  }) => {
+    setTeamPopupContent({ name, profession, about, imageSrc })
+  }
+  useEffect(() => {
+    if (section === 'Discover') {
+      const discoverSection = document.getElementById('Discover')
+      if (discoverSection) {
+        discoverSection.scrollIntoView({ behavior: 'smooth' })
+      }
+    }
+  }, [section])
+  const handleCloseTeamPopup = () => {
+    setTeamPopupContent(null)
+  }
 
   const [popupContent, setPopupContent] = useState(null)
 
@@ -159,7 +191,10 @@ const Home = () => {
           </div>
         </div>
       </section>
-      <section className="Discover">
+      <section
+        id="Discover"
+        className={section === 'Discover' ? 'Discover' : 'Discover'}
+      >
         <div className="First">
           <div className="FirstContent">
             <h1 id="HomeTextH1">
@@ -180,14 +215,16 @@ const Home = () => {
         <div className="Second"></div>
       </section>
       <section className="Gallery">
-        <h1 style={{ marginTop: '30px' }}>Gallery</h1>
-        <div style={{ marginTop: '50px' }} className="video-container">
+        <h1 style={{ marginTop: '30px', fontSize: '35px' }}>Gallery</h1>
+        <div
+          style={{ marginTop: '50px' }}
+          className="video-container rounded video-wrapper"
+        >
           <iframe
-            width="800"
-            height="450"
+            width="900"
+            height="500"
             src="https://www.youtube.com/embed/KOEfDvr4DcQ?autoplay=1&mute=1&loop=1&controls=0"
             title="YouTube video player"
-            className="curved-iframe"
             frameBorder="0"
           ></iframe>
         </div>
@@ -208,32 +245,33 @@ const Home = () => {
       </section>
 
       <section className="service">
-        <h2 className="S">Our Services</h2>
-        <div className="service-grid">
-          {services.map((service, index) => (
-            <div key={index} className="service-card">
-              <h2>{service.name}</h2>
-              <h3>{service.profession}</h3>
-              <p className="P">{service.description}</p>
-
-              <button
-                className="buttonser"
-                onClick={() => handleReadMoreClick(service.description)}
-              >
-                Learn More
-              </button>
-            </div>
-          ))}
-          {popupContent && (
-            <div className="popup">
-              <div className="popup-content">
-                <span className="close" onClick={handleClosePopup}>
-                  &times;
-                </span>
-                <p>{popupContent}</p>
+        <div className="service-content">
+          <h2 className="S">Our Services</h2>
+          <div className="service-grid">
+            {services.map((service, index) => (
+              <div key={index} className="service-card">
+                <h2 className="ServiceH2">{service.name}</h2>
+                <h3>{service.profession}</h3>
+                <p className="P">{service.description}</p>
+                <button
+                  className="buttonser"
+                  onClick={() => handleReadMoreClick(service.description)}
+                >
+                  Learn More
+                </button>
               </div>
-            </div>
-          )}
+            ))}
+            {popupContent && (
+              <div className="popup">
+                <div className="popup-content">
+                  <span className="close" onClick={handleClosePopup}>
+                    &times;
+                  </span>
+                  <p>{popupContent}</p>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </section>
 
@@ -247,6 +285,7 @@ const Home = () => {
             about="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
             enim ad"
+            onReadMoreClick={handleTeamMemberReadMoreClick}
           />
           <TeamMemberCard
             imageSrc="../src/assets/images/FemaleD.png"
@@ -255,6 +294,7 @@ const Home = () => {
             about="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
             enim ad"
+            onReadMoreClick={handleTeamMemberReadMoreClick}
           />
           {/* <TeamMemberCard
             imageSrc="../src/assets/images/Male.png"
@@ -262,6 +302,27 @@ const Home = () => {
             profession="Dermatologist"
             about="Bob is an experienced Dermatologist "
           /> */}
+
+          {teamPopupContent && (
+            <div className="team-popup">
+              <div className="popupp-content">
+                <span className="closee" onClick={handleCloseTeamPopup}>
+                  &times;
+                </span>
+                <img
+                  src={teamPopupContent.imageSrc}
+                  alt={`${teamPopupContent.name}'s headshot`}
+                  className="popupimage"
+                />
+                <div className="TeamC">
+                  <h3>{teamPopupContent.name}</h3>
+                  <p>{teamPopupContent.profession}</p>
+                  <p>{teamPopupContent.about}</p>
+                  <button>Book a consultation</button>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
@@ -270,6 +331,7 @@ const Home = () => {
           style={{
             textAlign: 'center',
             fontSize: '24px',
+            fontWeight: 'bold',
             marginBottom: '20px'
           }}
         >
@@ -286,7 +348,7 @@ const Home = () => {
         >
           <div
             style={{
-              marginBottom: '15px',
+              marginBottom: '10px',
               display: 'flex',
               justifyContent: 'space-between'
             }}
@@ -307,7 +369,7 @@ const Home = () => {
                   border: '1px solid #ccc',
                   borderRadius: '10px',
                   fontSize: '16px',
-                  marginBottom: '10px'
+                  marginBottom: '3px'
                 }}
                 required
               />
@@ -327,7 +389,7 @@ const Home = () => {
                   border: '1px solid #ccc',
                   borderRadius: '10px',
                   fontSize: '16px',
-                  marginBottom: '10px', // Add this line for gap
+                  marginBottom: '3px', // Add this line for gap
                   backgroundColor: '#f5f5f5'
                 }}
                 required
@@ -359,7 +421,7 @@ const Home = () => {
               type="submit"
               style={{
                 display: 'block',
-                width: '80%',
+                width: '105%',
                 margin: '0 auto',
                 padding: '10px',
                 backgroundColor: '#000',
@@ -375,19 +437,21 @@ const Home = () => {
           </div>
         </form>
       </section>
-      <footer className="footer" style={footerStyle}>
-        <div style={contentStyle}>
+      <footer className="footer">
+        <div className="content">
           <img
             src="../src/assets/images/Goldfont.png"
             alt="Company Logo"
-            height="50"
-            width="90"
+            height="60px"
+            width="100px"
           />
         </div>
 
-        <div style={contentStyle}>
+        <div className="content">
           <address>
-            2484 Muhammad Al Maqdimi, An Nafal, Riyadh 13312, Saudi Arabia
+            2484 Muhammad Al Maqdimi, An Nafal
+            <br />
+            Riyadh 13312, Saudi Arabia
             <br />
             Email: info@example.com
             <br />
@@ -395,53 +459,46 @@ const Home = () => {
           </address>
         </div>
 
-        <div style={contentStyle}>
+        <div className="content">
           <img
-            src="../src/assets/images/whatsapp.png"
+            src="../src/assets/images/whatsapp.svg"
             height="30px"
             width="30px"
             alt="WhatsApp Logo"
-            style={socialIconStyle}
+            className="social-icon"
           />
           <img
-            src="../src/assets/images/instagram.png"
+            src="../src/assets/images/instagram.svg"
             height="30px"
             width="30px"
             alt="Instagram Logo"
-            style={socialIconStyle}
+            className="social-icon"
           />
           <img
-            src="../src/assets/images/snapchat.png"
-            height="30px"
-            width="50px"
-            alt="Instagram Logo"
-            style={socialIconStyle}
-          />
-          <img
-            src="../src/assets/images/tittok.png"
+            src="../src/assets/images/snapchat.svg"
             height="30px"
             width="30px"
             alt="Instagram Logo"
-            style={socialIconStyle}
+            className="social-icon"
           />
           <img
-            src="../src/assets/images/linktree.png"
+            src="../src/assets/images/tiktok.svg"
             height="30px"
             width="30px"
             alt="Instagram Logo"
-            style={socialIconStyle}
+            className="social-icon"
           />
         </div>
 
-        <div style={contentStyle}>
+        <div className="content">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14489.855588028031!2d46.6611757!3d24.7795639!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2ee36d7e688701%3A0xdae179a2547ddb46!2zUmV2ZWFsIENsaW5pY3MgfCDYudmK2KfYr9ipINix2YrapNmK2YQ!5e0!3m2!1sen!2sbh!4v1709058186953!5m2!1sen!2sbh"
             width="300px"
             height="120px"
             style={{ border: '0' }}
-            allowfullscreen=""
+            allowFullScreen=""
             loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
+            referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
         </div>
       </footer>
